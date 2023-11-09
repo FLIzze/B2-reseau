@@ -1,4 +1,0 @@
-import socket
-from sys import argv
-
-print(socket.gethostbyname(f"{argv[1]}"))
