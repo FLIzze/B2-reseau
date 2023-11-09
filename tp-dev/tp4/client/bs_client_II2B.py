@@ -32,11 +32,13 @@ def connect():
 
 
 def checkInput(dataFromClient):
-    if type(dataFromClient) != str:
+	global error
+	if type(dataFromClient) != str:
         #raise TypeError("Le message doit etre une string.")
-        return False
-    else:
-        result = re.match("^.*(waf|meo).*$", dataFromClient)
+		error = (TypeError, "Le message doit etre une string.")
+		return False
+	else:
+		result = re.match("^.*(waf|meo).*$", dataFromClient)
         if result == None:
             #raise ValueError("Le message doit contenir 'waf' ou 'meo'")
             global error

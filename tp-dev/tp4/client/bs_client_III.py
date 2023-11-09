@@ -34,16 +34,17 @@ def connect():
 
 
 def checkInput(dataFromClient):
-    if type(dataFromClient) != str:
+	global error
+	if type(dataFromClient) != str:
         #raise TypeError("Le message doit etre une string.")
-        return False
-    else:
-        result = re.match("^-?(100000|[0-9]{1,5})(\+|\-|\*)-?(100000|[0-9]{1,5})$", dataFromClient)
-        if result == None:
-            global error
-            error = (ValueError, "Mauvais calcul")
-            return False
-    return True
+		error = (TypeError, "Le message doit etre une string.")
+		return False
+
+	result = re.match("^-?(100000|[0-9]{1,5})(\+|\-|\*)-?(100000|[0-9]{1,5})$", dataFromClient)
+	if result == None:
+		error = (ValueError, "Mauvais calcul")
+		return False
+	return True
 
 def log(hierachy, string):
     global logPath
