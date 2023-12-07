@@ -1,0 +1,42 @@
+# Fichiers temporaires ou générés par Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Fichiers liés à l'environnement virtuel Python
+venv/
+env/
+.Python
+
+# Fichiers de logs
+*.log
+
+# Fichiers de sauvegarde
+*~
+
+# Fichiers de configuration Vim
+*.swp
+*.swo
+*.swn
+*.swm
+*.swl
+*.un~
+*.bak
+*.bkp
+*.tmp
+*~
+
+# Fichiers de session Vim
+Session.vim
+
+# Fichiers de sauvegarde de Vim
+*.swo
+*.swn
+*.swm
+*.swl
+
+# Dossiers spécifiques à Vim
+.vim/
+.vim-*
+
