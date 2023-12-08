@@ -1,0 +1,9 @@
+import asyncio
+
+host = "10.33.79.112"
+port = 6969
+
+async def connection:
+
+async def main():
+    asyncio.run(connection())
