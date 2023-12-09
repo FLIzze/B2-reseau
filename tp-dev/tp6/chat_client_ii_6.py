@@ -1,7 +1,6 @@
 import asyncio
 import signal
 import aioconsole
-from functools import partial
 
 host = "127.0.0.1"
 port = 6969
@@ -22,7 +21,6 @@ async def connect():
 async def async_input():
     client.writer.write(f"Hello|{username}".encode('utf-8'))
     await client.writer.drain()
-
     while True:
         input_client = await aioconsole.ainput()
         client.writer.write(input_client.encode('utf-8'))
@@ -34,8 +32,8 @@ async def async_receive():
         if data_from_server != b"":
             print(data_from_server.decode())
         else:
-            print("server closed")
-            exit(3)
+            print(f"Le server {host}:{port} vient de fermer... [ctrl + c] pour quitter.")
+            await client.writer.wait_closed()
 
 def signal_handler(signal, frame):
     client.writer.close()

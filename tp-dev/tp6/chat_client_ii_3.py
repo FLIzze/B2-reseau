@@ -19,27 +19,28 @@ async def connect():
         exit(2)
     return reader, writer
 
-async def async_input(client: Client):
+async def async_input():
     while True:
         input_client = await aioconsole.ainput()
         client.writer.write(input_client.encode('utf-8'))
         await client.writer.drain()
 
-async def async_receive(client: Client):
+async def async_receive():
     while True:
         data_from_server = await client.reader.read(1024)
         if data_from_server != b"":
             print(data_from_server.decode())
 
-def signal_handler(client: Client, signal, frame):
+def signal_handler(signal, frame):
     client.writer.close()
     exit(1)
 
 async def main():
     reader, writer = await connect()
+    global client
     client = Client(reader, writer)
-    signal.signal(signal.SIGINT, partial(signal_handler, client))
-    await asyncio.gather(async_input(client), async_receive(client))
+    signal.signal(signal.SIGINT, signal_handler)
+    await asyncio.gather(async_input(), async_receive())
 
 if __name__ == "__main__":
     asyncio.run(main())

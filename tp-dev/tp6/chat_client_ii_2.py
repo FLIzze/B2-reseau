@@ -1,6 +1,6 @@
 import socket
 
-host = "10.33.79.112"
+host = "127.0.0.1"
 port = 6969
 
 def client():
@@ -19,4 +19,5 @@ def client():
     print(f"from server: {dataFromServer.decode('utf-8')}")
     exit(0) 
 
-client()
+if __name__ == "__main__":
+    client()

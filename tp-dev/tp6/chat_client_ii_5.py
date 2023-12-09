@@ -33,9 +33,6 @@ async def async_receive():
         data_from_server = await client.reader.read(1024)
         if data_from_server != b"":
             print(data_from_server.decode())
-        else:
-            print("server closed")
-            exit(3)
 
 def signal_handler(signal, frame):
     client.writer.close()
